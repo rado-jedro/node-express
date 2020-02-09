@@ -33,6 +33,10 @@ app.get('/history', (req, res) => {
   res.render('history');
 });
 
+app.post('/contact/send-message', (req, res) => {
+    res.json(req.body);
+  });
+
 app.use((req, res) => {
   res.status(404).send('404 not found...');
 });
