@@ -19,7 +19,7 @@ app.get('/hello/:name', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-  res.render('about' , { layout: 'dark' });
+  res.render('about', { layout: 'dark' });
 });
 
 app.get('/contact', (req, res) => {
@@ -35,8 +35,14 @@ app.get('/history', (req, res) => {
 });
 
 app.post('/contact/send-message', (req, res) => {
-    res.json(req.body);
-  });
+  const { author, sender, title, message } = req.body;
+
+  if (author && sender && title && message) {
+    res.send('The message has been sent!');
+  } else {
+    res.send("You can't leave fields empty!");
+  }
+});
 
 app.use((req, res) => {
   res.status(404).send('404 not found...');
