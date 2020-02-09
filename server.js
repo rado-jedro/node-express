@@ -2,6 +2,10 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
+const hbs = require('express-handlebars');
+
+app.engine('.hbs', hbs());
+app.set('view engine', '.hbs');
 
 app.use((req, res, next) => {
   res.show = name => {
@@ -13,8 +17,8 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname + '/public')));
 
 app.get('/hello/:name', (req, res) => {
-    res.send(`Hello ${req.params.name}`);
-  });
+  res.render('hello', { name: req.params.name });
+});
 
 app.get('/', (req, res) => {
   res.show('index.html');
