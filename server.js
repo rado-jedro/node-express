@@ -17,8 +17,8 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname + '/public')));
 
 app.get('/hello/:name', (req, res) => {
-  res.render('hello', { name: req.params.name });
-});
+    res.render('hello', { layout: false, name: req.params.name });
+  });
 
 app.get('/', (req, res) => {
   res.show('index.html');
